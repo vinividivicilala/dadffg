@@ -1,0 +1,31 @@
+---
+import Mdx from '#components/mdx/Mdx.astro'
+import { HOST } from '#constants/data'
+import Layout from '#layout'
+import params from '#libs/params'
+import type { CollectionEntry } from 'astro:content'
+
+export const { getStaticPaths } = params('snippets', 'snippet')
+
+type Props = { snippet: CollectionEntry<'snippets'> }
+
+const { snippet } = Astro.props
+
+const image = `${HOST}/og/posts/${snippet.slug}.svg`
+---
+
+<Layout image={image}>
+  <section>
+    <h1>{snippet.data.title}</h1>
+    <Mdx payload={snippet} />
+  </section>
+</Layout>
+
+<style lang='scss'>
+  h1 {
+    font-size: 2.4em;
+  }
+  section {
+    @include flex-column;
+  }
+</style>

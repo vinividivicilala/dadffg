@@ -1,0 +1,54 @@
+---
+import { SEO } from 'astro-seo'
+
+const TYPE = 'website'
+const URL = 'https://carlosburelo.vercel.app'
+
+const TWITTER_HANDLE = '@carlosburelo9'
+
+interface Props {
+  title: string
+  description: string
+  image: string
+}
+
+const { title, description, image } = Astro.props
+---
+
+<SEO
+  title={title}
+  description={description}
+  canonical={URL}
+  charset={'utf-8'}
+  openGraph={{
+    basic: {
+      title: title + ' | Carlos Burelo',
+      type: TYPE,
+      image: image,
+      url: URL,
+    },
+    image: {
+      alt: title,
+    },
+  }}
+  twitter={{
+    creator: TWITTER_HANDLE,
+    site: TWITTER_HANDLE,
+    card: 'summary_large_image',
+    description: description,
+    image: image,
+    title: title,
+    imageAlt: title,
+  }}
+  extend={{
+    link: [
+      { rel: 'canonical', href: URL },
+      { rel: 'icon', type: 'image/webp', href: '/avatar.webp' },
+      { rel: 'sitemap', type: 'application/xml', href: '/sitemap-index.xml' },
+    ],
+    meta: [
+      { name: 'generator', content: Astro.generator },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
+    ],
+  }}
+/>

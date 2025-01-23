@@ -1,0 +1,21 @@
+---
+import Mdx from '#components/mdx/Mdx.astro'
+
+export type Props = PageProps
+
+const { payload } = Astro.props
+---
+
+<section>
+  <slot />
+  <Mdx payload={payload} />
+</section>
+
+<style lang='scss'>
+  section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+  }
+</style>

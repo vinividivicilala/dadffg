@@ -1,0 +1,26 @@
+---
+import Section from '#components/elements/Section.astro'
+import { EXPERIENCE, t } from '#constants/data'
+---
+
+<Section title={t.experience.title}>
+  {
+    EXPERIENCE.map(i => (
+      <div>
+        <header>
+          <h3>{i.title}</h3>
+        </header>
+        <p>{i.description}</p>
+      </div>
+    ))
+  }
+</Section>
+
+<style lang='scss'>
+  h3 {
+    font-size: 1.8em;
+  }
+  p {
+    font-size: 1.2em;
+  }
+</style>

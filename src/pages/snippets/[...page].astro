@@ -1,0 +1,25 @@
+---
+import Layout from '#layout'
+import SnippetCard from '#layouts/snippets/SnippetCard.astro'
+import { getSnippets } from '#libs/paths'
+
+export const { getStaticPaths } = await getSnippets()
+
+type Props = Paginated<'snippets'>
+
+const { page } = Astro.props
+---
+
+<Layout>
+  <div class='snippets'>
+    {page.data.map(snippet => <SnippetCard {...snippet} />)}
+  </div>
+</Layout>
+
+<style lang='scss'>
+  .snippets {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 1rem;
+  }
+</style>
